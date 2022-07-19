@@ -12,18 +12,12 @@ var = requests.post(
        "encSecKey": "573c1b2c21346fcc23119e9113b2a10210d05da5cbdd5c0c9f5126b3f4c28a33d48ed5a9b374481ee43b30a1631f0b9229121d9072c0a97a8956c8fdf21c751f463e520e56b6b6606940983c6205dc43c04d52cf5a1ecfcc8d16b395afe43a9c8448fda08d1f97a0fa7d393ebf15d25ace550d8da065fbe70988c72eae4fadc7"
     }
 ).json()
-# print(var)
-
 item = var['result']['songs']
-# print(item)
-
 for i in item:
     name = i["name"]
     music_id = i["id"]
-    #print(name, music_id)
     urls = "http://music.163.com/song/media/outer/url?id={}.mp3".format(music_id)
     mp3 = requests.get(urls).content
-    #print(mp3)
     with open("music/" + name + ".mp3", "wb") as f:
         f.write(mp3)
     print(name, "下载完成！")
